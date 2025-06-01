@@ -43,6 +43,12 @@ const items=[
       command: () => router.push('/inscription') ,
       
   },
+  {
+      label: 'Mes Matchs',
+      icon: 'pi pi-star',
+      command: () => router.push('/match') ,
+      
+  },
   
 ]
 

@@ -24,7 +24,7 @@ const login=async()=>{
   console.log(data.value)
   const router = useRouter()
   
-    userStore.setUser(0)
+    userStore.setUser(data.value.id_joueur[0])
     console.log(userStore.id)
     router.push('/')
   

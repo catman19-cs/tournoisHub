@@ -23,7 +23,7 @@
             êtes-vous sur de vous inscrire?
         <template #footer>
             <Button severity="danger" label="Cancel" @click="confirmation=false" />
-            <Button severity="sucess" label="S'inscrire" @click="inscrire" style="margin-left: 3px;"/>
+            <Button severity="sucess" label="S'inscrire" @click="inscrire(id)" style="margin-left: 3px;"/>
 
         </template>
         
@@ -45,6 +45,7 @@
     
 </template>
 <script setup>
+const userStore = useUserStore()
 const confirmation=ref(false)
 const detail=ref(false)
 const props = defineProps({
@@ -63,11 +64,26 @@ const props = defineProps({
     id:{
         type:Number,
     },
-    
+    inscription:{
+        type:Function,
+    }
 })
 
 
-function inscrire(){
-    console.log(props.id)
+const inscrire=async(id_tournois)=>{
+    // const post={
+    //     joueur:{id_joueur:userStore.id},
+    //     id:{
+    //         id_tournois:id_tournois
+    //     },
+    //     tournois:{
+    //         id_tournois:id_tournois
+    //     }
+    // }
+    
+    const {data ,pending}= await useFetch(`http://localhost:8080/webresources/tournois/inscription/${userStore.id}/${id_tournois}`,{
+        method:"POST"
+    }
+    )
 }
 </script>

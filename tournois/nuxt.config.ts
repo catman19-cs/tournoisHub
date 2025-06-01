@@ -24,8 +24,8 @@ export default defineNuxtConfig({
               cssLayer: false
           }
         }
-    }
-},
+      }
+    },
 
 
   

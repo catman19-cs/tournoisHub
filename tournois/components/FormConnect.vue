@@ -23,6 +23,7 @@
                         <Button label="Se Connecter" @click="login"/>
                     </div>
                 </Form>
+                <Button label="S'inscrire" @click="router.push('/inscrire')"></Button>
             </template>
         </Card>
     </div>
@@ -30,6 +31,7 @@
 
 <script setup>
     import { useToast } from "primevue/usetoast";
+    const router=useRouter()
     const toast = useToast();
     const email =ref('')
     const mdp =ref('')
@@ -37,12 +39,12 @@
     const userStore = useUserStore()
     const login=async()=>{
         strHash(mdp.value).then(function(hash) {
-            console.log(hash)
+            
             mdpHash = hash
         }).then(function(){
             const url =`http://localhost:8080/webresources/tournois/joueur/${email.value}/${mdpHash}`
             const {data}= useFetch(url)
-            console.log(data.value[0])
+            
             if(data.value[0]===undefined){
                 toast.add({ severity: 'error', summary: 'Erreur de connexion', detail: 'votre email ou mot de passe est incorrecte', life: 3000 });
             }else{
